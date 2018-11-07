@@ -48,7 +48,7 @@ export class MapContainer extends Component {
 					.filter(marker => this.props.markers)
 					.map( (marker,index) =>  (
         		<Marker
-							position = {{lat:this.props.markers.forEach.lat, lng:this.props.markers.forEach.lng}}
+							position = {{lat:this.props.markers[0].lat, lng:this.props.markers[0].lng}}
 							key = {index}
           		onClick={this.onMarkerClick}
 

@@ -23,7 +23,7 @@ class App extends Component {
 		} ).then( results => {
 			const { venues } = results.response;
 			const { center } = results.response.geocode.feature.geometry;
-			const { markers } = venues.map( venue => {
+			const markers = venues.map( venue => {
 				return {
 					lat: venue.location.lat,
 					lng: venue.location.lng,
