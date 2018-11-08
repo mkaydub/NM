@@ -49,15 +49,17 @@ class App extends Component {
 					lat: venue.location.lat,
 					lng: venue.location.lng,
 					isOpen: false,
-					isVisible: true
+					isVisible: true,
+					name: venue.name,
+					title: venue.id
 				};
 			} );
 			this.setState( { venues, center, markers } );
-			for ( var i = 0; i < venues.length; i += 1 ) {
-				console.log( venues[ i ].location.lat, venues[ i ].location.lng );
-			}
+			console.log( venues, markers )
+
 		} );
 	}
+
 
 
 	render() {
@@ -66,7 +68,10 @@ class App extends Component {
         <div>
 					<h1>Denver, Colorado Foodie Scene</h1>
         <MapContainer
-          {...this.state}/>
+          {...this.state}
+					onMarkerClick= {this.onMarkerClick}
+					onMapClick = {this.onMapClick}
+					/>
         </div>
 
 
