@@ -21,8 +21,14 @@ class App extends Component {
 			activeMarker: marker,
 			showingInfoWindow: true,
 		} );
-		console.log( props )
+		const venue = this.state.venues.find( venue => venue.id === marker.id );
+		SquareAPI.getVenueDetails( marker.id ).then( res => {
+			const newVenue = Object.assign( venue, res.response.venue );
+			this.setState( { venues: Object.assign( this.state.venues, newVenue ) } )
+			console.log( newVenue )
+		} )
 	}
+
 
 	onMapClick = ( props ) => {
 		if ( this.state.showingInfoWindow ) {
