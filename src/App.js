@@ -12,8 +12,29 @@ class App extends Component {
 		map: null,
 		showingInfoWindow: false,
 		activeMarker: {},
-		selectedPlace: {},
+		selectedPlace: {}
 	}
+
+	onMarkerClick = ( props, marker, e ) => {
+		this.setState( {
+			selectedPlace: props,
+			activeMarker: marker,
+			showingInfoWindow: true,
+		} );
+		console.log( props )
+	}
+
+	onMapClick = ( props ) => {
+		if ( this.state.showingInfoWindow ) {
+			this.setState( {
+				showingInfoWindow: false,
+				activeMarker: {}
+			} )
+		}
+		console.log( 'clicked' )
+	};
+
+
 
 	componentDidMount() {
 		SquareAPI.search( {
