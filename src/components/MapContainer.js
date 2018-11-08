@@ -19,33 +19,30 @@ export class MapContainer extends Component {
 		}
 		return (
 			<Map
-				{...this.props}
-				role='application'
-				aria-label='map'
-        google={this.props.google}
-        style={style}
-        onClick={this.closeInfoWindow}
-				center={this.props.center}>
+                role='application'
+                aria-label='map'
+                google={this.props.google}
+                style={style}
+                onClick={this.props.onMapClick}
+                center={this.props.center}>
 
-				{this.props.markers &&
-				this.props.markers
-					.filter(marker => this.props.markers)
-					.map( (marker,index) =>  (
-        		<Marker
-							position = {{lat:this.props.markers[0].lat, lng:this.props.markers[0].lng}}
-							key = {index}
-          		onClick={this.onMarkerClick}
-
- 							/>
-								))}
+                {this.props.venues && this.props.venues.map( (venue,index) =>  (
+                    <Marker
+                        position = {{lat:venue.location.lat, lng:venue.location.lng}}
+                        key = {index}
+												name = {venue.name}
+                        onClick={ this.props.onMarkerClick }
+												animation ={this.props.activeMarker.name === venue.name ? this.props.google.maps.Animation.BOUNCE : null }
+                    />
+                ))}
 
           <InfoWindow
-            marker={this.activeMarker}
-            onOpen={this.windowHasOpened}
-            onClose={this.windowHasClosed}
-            visible={this.showingInfoWindow}>
+            marker={this.props.activeMarker}
+            onOpen={this.props.windowHasOpened}
+            onClose={this.props.windowHasClosed}
+            visible={this.props.showingInfoWindow}>
               <div>
-                <h1>{this.props.selectedPlace.name}</h1>
+                <h1>{this.props.activeMarker.name}</h1>
               </div>
           </InfoWindow>
       </Map>
