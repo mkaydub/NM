@@ -8,22 +8,6 @@ const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 export class MapContainer extends Component {
 	state = {};
 
-	onMarkerClick = ( props, marker, e ) =>
-		this.setState( {
-			selectedPlace: props,
-			activeMarker: marker,
-			showingInfoWindow: true
-		} );
-
-	onMapClicked = ( props ) => {
-		if ( this.props.showingInfoWindow ) {
-			this.setState( {
-				showingInfoWindow: false,
-				activeMarker: null
-			} )
-		}
-	};
-
 	render() {
 		if ( !this.props.loaded ) {
 			return <div>Loading...</div>
