@@ -8,18 +8,21 @@ class App extends Component {
 		venues: [],
 		markers: [],
 		center: {},
-		zoom: 15,
+		zoom: 13,
 		map: null,
 		showingInfoWindow: false,
 		activeMarker: {},
-		selectedPlace: {}
+		selectedPlace: {},
+		animation: null
 	}
+
 
 	onMarkerClick = ( props, marker, e ) => {
 		this.setState( {
 			selectedPlace: props,
 			activeMarker: marker,
 			showingInfoWindow: true,
+			animation: 1
 		} );
 		const venue = this.state.venues.find( venue => venue.id === marker.id );
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
@@ -34,18 +37,17 @@ class App extends Component {
 		if ( this.state.showingInfoWindow ) {
 			this.setState( {
 				showingInfoWindow: false,
-				activeMarker: {}
+				activeMarker: {},
+				animation: null
 			} )
 		}
 		console.log( 'clicked' )
 	};
 
-
-
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 50,
+			limit: 3,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
@@ -57,7 +59,8 @@ class App extends Component {
 					isOpen: false,
 					isVisible: true,
 					name: venue.name,
-					title: venue.id
+					id: venue.id,
+					rating: venue.rating,
 				};
 			} );
 			this.setState( { venues, center, markers } );
@@ -77,6 +80,8 @@ class App extends Component {
           {...this.state}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
+					onClose = {this.closeWindow}
+					animation = {1}
 					/>
         </div>
 
