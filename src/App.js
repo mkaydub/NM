@@ -49,7 +49,7 @@ class App extends Component {
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 1,
+			limit: 10,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
