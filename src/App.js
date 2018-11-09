@@ -26,11 +26,14 @@ class App extends Component {
 			animation: 1
 		} );
 		const venue = this.state.venues.filter( venue => venue.id === marker.id );
+		console.log( 'selected venues:', venue )
+		console.log( 'before fs update to venues:', this.state.venues )
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
-			const newVenue = Object.assign( venue, res.response.venue );
-			this.setState( { venues: Object.assign( newVenue, this.state.venues ) } )
-			console.log( newVenue.bestPhoto.prefix )
-			console.log( newVenue.bestPhoto.suffix )
+			console.log( 'after fs update to venues:', Object.assign( venue,
+				res.response.venue ) );
+			this.setState( { venues: Object.assign( venue, res.response.venue ) } )
+			console.log( this.state.venues.bestPhoto.prefix )
+			console.log( this.state.venues.bestPhoto.suffix )
 		} )
 	}
 
@@ -81,7 +84,6 @@ class App extends Component {
 					<h1>Denver, Colorado Foodie Scene</h1>
         <MapContainer
           {...this.state}
-					venues={this.state.venues}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
