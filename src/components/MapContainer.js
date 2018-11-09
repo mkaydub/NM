@@ -17,6 +17,7 @@ export class MapContainer extends Component {
 			width: '100%',
 			height: '100%'
 		}
+
 		return (
 			<Map
                 role='application'
@@ -38,7 +39,10 @@ export class MapContainer extends Component {
                         onClick={ this.props.onMarkerClick }
 												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}/>
 								 ))}
+
+
 								<InfoWindow
+
 											onClick= {this.props.onMarkerClick}
 											marker={this.props.activeMarker}
 											onOpen={this.props.windowHasOpened}
@@ -47,8 +51,8 @@ export class MapContainer extends Component {
 									<div>
 										<h1>{this.props.activeMarker.name}</h1>
 											<p>Rating: {this.props.venues.rating}</p>
-											<a href={this.props.venues.canonicalUrl}>Foursquare Listing</a>
-									</div>
+											<a href={this.props.venues.canonicalUrl} target='_blank'>Foursquare Listing</a>
+						</div>
 							</InfoWindow>
 
       </Map>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './components/MapContainer.js'
 import SquareAPI from './API/'
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 class App extends Component {
 	state = {
@@ -24,11 +25,12 @@ class App extends Component {
 			showingInfoWindow: true,
 			animation: 1
 		} );
-		const venue = this.state.venues.find( venue => venue.id === marker.id );
+		const venue = this.state.venues.filter( venue => venue.id === marker.id );
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			const newVenue = Object.assign( venue, res.response.venue );
-			this.setState( { venues: Object.assign( this.state.venues, newVenue ) } )
-			console.log( newVenue )
+			this.setState( { venues: Object.assign( newVenue, this.state.venues ) } )
+			console.log( newVenue.bestPhoto.prefix )
+			console.log( newVenue.bestPhoto.suffix )
 		} )
 	}
 
@@ -47,7 +49,7 @@ class App extends Component {
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 20,
+			limit: 1,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
@@ -74,10 +76,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<CssBaseline />
         <div>
 					<h1>Denver, Colorado Foodie Scene</h1>
         <MapContainer
           {...this.state}
+					venues={this.state.venues}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
