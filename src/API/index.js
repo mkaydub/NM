@@ -6,7 +6,7 @@ class Helper {
 		const keys = {
 			client_id: 'JTDE251NXNVGJQRKGQKVDF0IIQWDW34GNNKJIHTYI2EZBZNV',
 			client_secret: 'SUHJMVAK5L2HBVMBH3ZGOKY2VV3S0420KAIQN5J3XACBONEW',
-			v: '20181006'
+			v: '20181109'
 		};
 		return Object.keys( keys )
 			.map( key => `${key}=${keys[key]}` )
