@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 class App extends Component {
 	state = {
+		venue: [],
 		venues: [],
 		markers: [],
 		center: {},
@@ -31,9 +32,7 @@ class App extends Component {
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			console.log( 'after fs update to venues:', Object.assign( venue,
 				res.response.venue ) );
-			this.setState( { venues: Object.assign( venue, res.response.venue ) } )
-			console.log( this.state.venues.bestPhoto.prefix )
-			console.log( this.state.venues.bestPhoto.suffix )
+			this.setState( { venue: Object.assign( venue, res.response.venue ) } )
 		} )
 	}
 
@@ -84,6 +83,7 @@ class App extends Component {
 					<h1>Denver, Colorado Foodie Scene</h1>
         <MapContainer
           {...this.state}
+					venue= {this.state.venue}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
