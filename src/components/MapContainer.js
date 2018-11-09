@@ -40,21 +40,32 @@ export class MapContainer extends Component {
 												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}/>
 								 ))}
 
+								 {!this.props.loaded ? (
+									 <div><p>Loading</p></div>
+								 ):
+
 
 								<InfoWindow
-
-											onClick= {this.props.onMarkerClick}
 											marker={this.props.activeMarker}
 											onOpen={this.props.windowHasOpened}
 											onClose={this.props.closeWindow}
 											visible={this.props.showingInfoWindow}>
-									<div>
-										<h1>{this.props.activeMarker.name}</h1>
-											<p>Rating: {this.props.venues.rating}</p>
-											<a href={this.props.venues.canonicalUrl} target='_blank'>Foursquare Listing</a>
-						</div>
-							</InfoWindow>
+											<div>
+												<h1>{this.props.venue.name}</h1>
+													{this.props.venue && this.props.venue.bestPhoto
+														? (
+													 <div>
+														<img
+															src ={`${this.props.venue.bestPhoto.prefix}100x100${this.props.venue.bestPhoto.suffix}`}/>
+													</div>
+													)
+													: ''
+												}
+													<p>Rating: {this.props.venue.rating}</p>
+													<a href={this.props.venue.canonicalUrl} target='_blank'>Foursquare Listing</a>
 
+												</div>							</InfoWindow>
+}
       </Map>
 		);
 	}
