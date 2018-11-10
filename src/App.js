@@ -32,7 +32,10 @@ class App extends Component {
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			console.log( 'after fs update to venues:', Object.assign( venue,
 				res.response.venue ) );
-			this.setState( { venue: Object.assign( venue, res.response.venue ) } )
+			this.setState( {
+				venue: Object.assign( venue, res.response.venue ),
+				center: res.response.venue.location
+			} )
 		} )
 	}
 
@@ -51,7 +54,7 @@ class App extends Component {
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 10,
+			limit: 50,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
