@@ -60,6 +60,7 @@ export class MapContainer extends Component {
 													</div>
 													)
 													: ''
+													: <img src='/ni.png'/>
 												}
 													<p>Rating: {this.props.venue.rating}</p>
 													<a href={this.props.venue.canonicalUrl} target='_blank'>Foursquare Listing</a>
