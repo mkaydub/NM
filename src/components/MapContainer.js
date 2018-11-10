@@ -8,6 +8,7 @@ const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 export class MapContainer extends Component {
 	state = {};
 
+
 	render() {
 		if ( !this.props.loaded ) {
 			return <div>Loading...</div>
@@ -40,10 +41,6 @@ export class MapContainer extends Component {
 												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}/>
 								 ))}
 
-								 {!this.props.loaded ? (
-									 <div><p>Loading</p></div>
-								 ):
-
 
 								<InfoWindow
 											marker={this.props.activeMarker}
@@ -59,14 +56,21 @@ export class MapContainer extends Component {
 															src ={`${this.props.venue.bestPhoto.prefix}100x100${this.props.venue.bestPhoto.suffix}`}/>
 													</div>
 													)
-													: ''
 													: <img src='/ni.png'/>
 												}
-													<p>Rating: {this.props.venue.rating}</p>
-													<a href={this.props.venue.canonicalUrl} target='_blank'>Foursquare Listing</a>
-
+												<div>
+												{this.props.venue && this.props.venue.rating
+													? (
+														<div>
+															<p>Rating: {this.props.venue.rating}</p>
+															<a href={this.props.venue.canonicalUrl} target='_blank'>Foursquare Listing</a>
+													</div>
+												)
+														: <p>No Ratings Yet</p>
+													}
+													</div>
 												</div>							</InfoWindow>
-}
+
       </Map>
 		);
 	}
