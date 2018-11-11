@@ -122,6 +122,7 @@ class App extends Component {
 					<p className='powered'>Powered By Google Maps & FourSquare</p>
         <MapContainer
           {...this.state}
+					filtered={this.state.filtered}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
@@ -129,7 +130,7 @@ class App extends Component {
 					/>
 				<SideMenu
 					{...this.state}
-					onClick = {this.onMarkerClick}
+					onMarkerClick = {this.onMarkerClick}
 					filtered={this.state.filtered}
           open={this.state.open}
           toggleDrawer={this.toggleDrawer}
