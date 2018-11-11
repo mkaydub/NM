@@ -4,8 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 class SideMenu extends Component {
 	state = {
 		open: true,
-		query: '',
-		filtered: []
+		query: ''
 	}
 
 	updateQuery = ( newQuery ) => {
@@ -16,11 +15,12 @@ class SideMenu extends Component {
 		console.log( 'side menu', this.props.filtered )
 	}
 
-
 	render() {
+
 		return (
-			<Drawer open={this.props.open} onClose={this.props.toggleDrawer}>
-        <div className='filter'>
+			<Drawer open= {this.props.open}
+			onClose = { this.props.toggleDrawer }  >
+			<div className='filter'>
         <div className='listHeader'>You have options</div>
           <div className='filterH'>
             <input
@@ -29,26 +29,27 @@ class SideMenu extends Component {
               placeholder="Filter list"
               name="filter"
               onChange={e => this.updateQuery(e.target.value)}
+
               value={this.state.query} />
          </div>
           <ul>
-           {this.props.venues && this
+           {this.props.filtered && this
                                 .props
-                                .venues
+                                .filtered
                                 .map((venue, index) => {
                                     return (
                                         <li
                                         key={index}>
                                             <button
                                               venue= {venue}
-                                              onClick={e => this.props.clickListItem(index)}
+                                              onClick={() => this.props.clickListItem(index)}
                                               className = 'venueList'
                                               key={index}>{venue.name}</button>
                                         </li>
                                     )
                                 })}
                         </ul>
-                    </div></Drawer>
+                    </div> </Drawer>
 		)
 	}
 }
