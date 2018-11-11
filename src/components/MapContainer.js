@@ -100,7 +100,7 @@ export class MapContainer extends Component {
 													? (
 														<div>
 															<p>Rating: {this.props.venue.rating}</p>
-															<a href={this.props.venue.canonicalUrl} target='_blank'>Foursquare Listing</a>
+															<p><a href={this.props.venue.canonicalUrl} rel='noopener noreferrer'>FourSquare Listing</a></p>
 													</div>
 												)
 														: <p>No Ratings Yet</p>
