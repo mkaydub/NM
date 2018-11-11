@@ -63,14 +63,29 @@ export class MapContainer extends Component {
 												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}/>
 								 ))}
 
-
 								<InfoWindow
 											marker={this.props.activeMarker}
 											onOpen={this.props.windowHasOpened}
 											onClose={this.props.closeWindow}
 											visible={this.props.showingInfoWindow}>
 											<div>
-												<h1>{this.props.venue.name}</h1>
+												<h2>{this.props.venue.name}</h2>
+													{this.props.venue && this.props.venue.location
+														? (
+													 <div>
+														<p>{this.props.venue.location.address}</p>
+													</div>
+													)
+													: ''
+												}
+												{this.props.venue && this.props.venue.url
+													? (
+														<div>
+															<p><a href={this.props.venue.url} rel='noopener noreferrer'>{this.props.venue.name} Website</a></p>
+													</div>
+												)
+														: ''
+													}
 													{this.props.venue && this.props.venue.bestPhoto
 														? (
 													 <div>
