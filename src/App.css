@@ -141,6 +141,10 @@ input {
   display: none;
 }
 
+.MuiPaper-root-17 {
+  background-color: #313440 !important;
+}
+
 .MuiBackdrop-root-15 {
   background-color: rgba(0, 0, 0, 0) !important;
 }
