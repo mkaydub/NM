@@ -90,10 +90,10 @@ export class MapContainer extends Component {
 														? (
 													 <div>
 														<img
-															src ={`${this.props.venue.bestPhoto.prefix}100x100${this.props.venue.bestPhoto.suffix}`}/>
+															alt ={this.props.venue.name} src ={`${this.props.venue.bestPhoto.prefix}100x100${this.props.venue.bestPhoto.suffix}`}/>
 													</div>
 													)
-													: <img src='/ni.png'/>
+													: <img src='/ni.png' alt={this.props.venue.name}/>
 												}
 												<div>
 												{this.props.venue && this.props.venue.rating
