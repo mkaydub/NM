@@ -54,7 +54,7 @@ export class MapContainer extends Component {
 
 								{this.props.venues && this.props.venues.map( (venue,index) =>  (
 									<Marker
-												icon={{ url: 'https://img.icons8.com/material-two-tone/2x/marker.png' }}
+												icon={{ url: '/markericon.png' }}
 											  position = {{lat:venue.location.lat, lng:venue.location.lng}}
                         key = {index}
 												name = {venue.name}
