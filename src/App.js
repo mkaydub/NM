@@ -88,6 +88,7 @@ class App extends Component {
 			...this.state,
 			selectedIndex: null,
 			filtered: this.filterVenue( this.state.all, query )
+			filtered: this.filterVenue( this.state.venues, query )
 		} );
 		console.log( 'app level update',
 			this.state.filtered )
