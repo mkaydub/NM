@@ -3,6 +3,7 @@ import './App.css';
 import MapContainer from './components/MapContainer.js'
 import SquareAPI from './API/'
 import CssBaseline from '@material-ui/core/CssBaseline';
+import SideMenu from './components/SideMenu.js'
 
 class App extends Component {
 	state = {
@@ -15,9 +16,12 @@ class App extends Component {
 		showingInfoWindow: false,
 		activeMarker: {},
 		selectedPlace: {},
-		animation: null
+		animation: null,
+		open: false,
+		all: this.venues,
+		filtered: [],
+		query: ''
 	}
-
 
 	onMarkerClick = ( props, marker, e ) => {
 		this.setState( {
@@ -27,8 +31,6 @@ class App extends Component {
 			animation: 1
 		} );
 		const venue = this.state.venues.filter( venue => venue.id === marker.id );
-		console.log( 'selected venues:', venue )
-		console.log( 'before fs update to venues:', this.state.venues )
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			console.log( 'after fs update to venues:', Object.assign( venue,
 				res.response.venue ) );
@@ -45,16 +47,16 @@ class App extends Component {
 			this.setState( {
 				showingInfoWindow: false,
 				activeMarker: {},
-				animation: null
+				animation: null,
+				open: false
 			} )
 		}
-		console.log( 'clicked' )
 	};
 
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 50,
+			limit: 20,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
@@ -71,30 +73,70 @@ class App extends Component {
 				};
 			} );
 			this.setState( { venues, center, markers } );
-			console.log( venues, markers )
+		} );
 
+	}
+	toggleDrawer = () => {
+		// Toggle the value controlling whether the drawer is displayed
+		this.setState( {
+			open: !this.state.open
 		} );
 	}
+	updateQuery = ( query ) => {
+		// Update the query value and filter the list of locations accordingly
+		this.setState( {
+			...this.state,
+			selectedIndex: null,
+			filtered: this.filterVenue( this.state.all, query )
+		} );
+		console.log( 'app level update',
+			this.state.filtered )
+	}
 
+	filterVenue = ( venues, query ) => {
+		// Filter locations to match query string
+		return this.state.venues.filter( venue => venue.name.toLowerCase()
+			.includes( query.toLowerCase() ) );
+		console.log( 'filter update',
+			this.state.filtered )
+	}
 
+	clickListItem = ( index ) => {
+		// Set the state to reflect the selected location array index
+		this.setState( {
+			selectedIndex: index,
+			open: !this.state.open,
+		} )
+		console.log( 'filtered after click list', this.state.selectedIndex )
+	}
 
 	render() {
 		return (
-			<div className="App">
+			<div className='App'>
 				<CssBaseline />
-        <div>
-					<h1>Denver, Colorado Foodie Scene</h1>
+        <div className='header'>
+					<button className='hamburger' onClick={this.toggleDrawer}>
+		 <i className='fas fa-bars '></i>
+	 </button>
+					<h1>Denver, Colorado - Sushi Scene</h1>
+					<p className='powered'>Powered By Google Maps & FourSquare</p>
         <MapContainer
           {...this.state}
-					venue= {this.state.venue}
 					onMarkerClick= {this.onMarkerClick}
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
-					animation = {1}
+					selectedIndex={this.state.selectedIndex}
+					/>
+				<SideMenu
+					{...this.state}
+					onClick = {this.onMarkerClick}
+					filtered={this.state.filtered}
+          open={this.state.open}
+          toggleDrawer={this.toggleDrawer}
+					filterVenues= {this.updateQuery}
+					clickListItem = {this.clickListItem}
 					/>
         </div>
-
-
       </div>
 		);
 	}
