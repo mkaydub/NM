@@ -106,7 +106,18 @@ export class MapContainer extends Component {
 														: <p>No Ratings Yet</p>
 													}
 													</div>
-												</div>							</InfoWindow>
+													<div>
+														{this.props.venue && this.props.venue.hours
+															? (
+														 <div>
+															<p>Todays hours: {this.props.venue.hours.status} </p>
+														</div>
+														)
+														: <p>Todays Hours: Closed</p>
+													}
+												</div>
+											</div>
+										</InfoWindow>
 
       </Map>
 		);
