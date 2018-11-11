@@ -8,6 +8,28 @@ const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 export class MapContainer extends Component {
 	state = {};
 
+	componentDidMount = () => {}
+
+
+
+	componentWillReceiveProps = ( props ) => {
+		if ( !props.selectedIndex || ( this.state.activeMarker &&
+				( this.state.markers[ props.selectedIndex ] !== this.state.activeMarker ) ) ) {
+			this.closeInfoWindow();
+		}
+		if ( this.props.selectedIndex === null || typeof ( this.props.selectedIndex ) ===
+			"undefined" ) {
+			return;
+		};
+	}
+
+	closeInfoWindow = () => {
+		this.state.activeMarker &&
+			this.state.activeMarker.setAnimation( null );
+		this.setState( { showingInfoWindow: false, activeMarker: null } )
+	}
+
+
 
 	render() {
 		if ( !this.props.loaded ) {
