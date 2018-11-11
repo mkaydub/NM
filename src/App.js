@@ -20,7 +20,8 @@ class App extends Component {
 		open: false,
 		all: this.venues,
 		filtered: [],
-		query: ''
+		query: '',
+		selectedIndex: []
 	}
 
 	onMarkerClick = ( props, marker, e ) => {
@@ -41,7 +42,6 @@ class App extends Component {
 		} )
 	}
 
-
 	onMapClick = ( props ) => {
 		if ( this.state.showingInfoWindow ) {
 			this.setState( {
@@ -59,7 +59,7 @@ class App extends Component {
 			limit: 20,
 			query: 'sushi'
 		} ).then( results => {
-			const { venues } = results.response;
+			const { venues, filtered } = results.response;
 			const { center } = results.response.geocode.feature.geometry;
 			const markers = venues.map( venue => {
 				return {
@@ -72,10 +72,15 @@ class App extends Component {
 					rating: venue.rating,
 				};
 			} );
-			this.setState( { venues, center, markers } );
+			this.setState( {
+				venues,
+				center,
+				markers,
+				filtered
+			} );
 		} );
-
 	}
+
 	toggleDrawer = () => {
 		// Toggle the value controlling whether the drawer is displayed
 		this.setState( {
@@ -87,8 +92,7 @@ class App extends Component {
 		// Update the query value and filter the list of locations accordingly
 		this.setState( {
 			...this.state,
-			selectedIndex: null,
-			filtered: this.filterVenue( this.state.all, query )
+			selectedPlace: null,
 			filtered: this.filterVenue( this.state.venues, query )
 		} );
 		console.log( 'app level update',
