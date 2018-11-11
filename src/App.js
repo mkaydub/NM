@@ -79,7 +79,8 @@ class App extends Component {
 	toggleDrawer = () => {
 		// Toggle the value controlling whether the drawer is displayed
 		this.setState( {
-			open: !this.state.open
+			open: !this.state.open,
+			filtered: this.state.venues
 		} );
 	}
 	updateQuery = ( query ) => {
