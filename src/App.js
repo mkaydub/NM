@@ -40,6 +40,8 @@ class App extends Component {
 				center: res.response.venue.location
 			} )
 		} )
+
+
 	}
 
 	onMapClick = ( props ) => {
@@ -103,17 +105,20 @@ class App extends Component {
 		// Filter locations to match query string
 		return this.state.venues.filter( venue => venue.name.toLowerCase()
 			.includes( query.toLowerCase() ) );
-		console.log( 'filter update',
-			this.state.filtered )
+
 	}
 
-	clickListItem = ( index ) => {
+	clickListItem = ( index, props ) => {
 		// Set the state to reflect the selected location array index
 		this.setState( {
-			selectedIndex: this.state.markers[ index ]
+			activeMarker: this.state.markers[ index ],
+			open: !this.state.open
 		} )
-		console.log( 'filtered after click list', this.state.selectedIndex )
+		console.log(
+			'filtered after click list', this.state.activeMarker, this.state.showingInfoWindow
+		)
 	}
+
 
 	render() {
 		return (
@@ -132,10 +137,10 @@ class App extends Component {
 					onMapClick = {this.onMapClick}
 					onClose = {this.closeWindow}
 					selectedIndex={this.state.selectedIndex}
+					onListClick = {this.clickListItem}
 					/>
 				<SideMenu
 					{...this.state}
-					onMarkerClick = {this.onMarkerClick}
 					filtered={this.state.filtered}
           open={this.state.open}
           toggleDrawer={this.toggleDrawer}
