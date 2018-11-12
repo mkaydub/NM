@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PropTypes from 'prop-types';
+import NoMap from './NoMap.js';
 
 const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 
@@ -39,15 +40,18 @@ export class MapContainer extends Component {
 												name = {venue.name}
 												id = {venue.id}
                         onClick={ this.props.onMarkerClick }
-												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}/>
+												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}
+												onListClick= {this.props.clickListItem}/>
 								 ))}
 
+								 
 								<InfoWindow
 											marker={this.props.activeMarker}
 											filtered = {this.props.filtered}
 											onOpen={this.props.windowHasOpened}
 											onClose={this.props.closeWindow}
-											visible={this.props.showingInfoWindow}>
+											visible={this.props.showingInfoWindow}
+											>
 											<div>
 												<h2>{this.props.venue.name}</h2>
 													{this.props.venue && this.props.venue.location
@@ -109,5 +113,6 @@ MapContainer.propTypes = {
 }
 
 export default GoogleApiWrapper( {
-	apiKey: API_Key
+	apiKey: API_Key,
+	LoadingContainer: NoMap
 } )( MapContainer )
