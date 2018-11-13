@@ -108,14 +108,15 @@ class App extends Component {
 
 	}
 
-	clickListItem = ( index ) => {
+	clickListItem = ( index, props ) => {
 		// Set the state to reflect the selected location array index
 		this.setState( {
-			selectedIndex: index,
-			open: !this.state.open
+			activeMarker: this.state.markers[ index ],
+			open: !this.state.open,
+			selectedIndex: index
 		} )
 		console.log(
-			'filtered after click list', this.state.activeMarker
+			'filtered after click list', this.state.activeMarker, this.state.showingInfoWindow
 		)
 	}
 
