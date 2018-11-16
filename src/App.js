@@ -79,7 +79,6 @@ class App extends Component {
 				markers
 			} );
 		} );
-
 	}
 
 	toggleDrawer = () => {
@@ -121,8 +120,7 @@ class App extends Component {
 				res.response.venue ) );
 			this.setState( {
 				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
-				activeMarker: clickedVenue,
-				showingInfoWindow: true
+				activeMarker: clickedVenue
 			} )
 		} )
 	}

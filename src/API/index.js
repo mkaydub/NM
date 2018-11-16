@@ -2,6 +2,7 @@ class Helper {
 	static baseURL() {
 		return 'https://api.foursquare.com/v2'
 	}
+
 	static auth() {
 		const keys = {
 			client_id: 'JTDE251NXNVGJQRKGQKVDF0IIQWDW34GNNKJIHTYI2EZBZNV',
