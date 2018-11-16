@@ -11,7 +11,7 @@ class App extends Component {
 		venues: [],
 		markers: [],
 		center: {},
-		zoom: 13,
+		zoom: 14,
 		map: null,
 		showingInfoWindow: false,
 		activeMarker: {},
