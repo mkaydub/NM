@@ -48,7 +48,7 @@ class SideMenu extends Component {
                                         <li
                                         key={index}>
                                             <button
-                                              activeMarker= {this.props.clickedVenue}
+                                              marker= {this.props.clickedVenue}
                                               onClick={() => this.props.clickListItem(index)}
                                               className = 'venueList'
                                               key={index}

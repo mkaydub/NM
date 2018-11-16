@@ -7,7 +7,10 @@ const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 
 
 export class MapContainer extends Component {
-	state = {};
+	state = {
+		clickedVenue: {},
+		filtered: {}
+	};
 
 	componentDidMount = () => {}
 
@@ -31,11 +34,11 @@ export class MapContainer extends Component {
                 onClick={this.props.onMapClick}
                 center={this.props.center}
 								animation= {this.props.animation}
-								zoom = {this.props.zoom}>
+								zoom = {this.props.zoom}
+								clickListItem= {this.props.clickListItem}>
 
 								{this.props.venues && this.props.venues.map( (venue,index) =>  (
 									<Marker
-												ref= {this.props.clickedVenue}
 												icon={{ url: '/markericon.png' }}
 											  position = {{lat:venue.location.lat, lng:venue.location.lng}}
                         key = {index}
@@ -43,7 +46,7 @@ export class MapContainer extends Component {
 												id = {venue.id}
                         onClick={ this.props.onMarkerClick }
 												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}
-												onListClick= {this.props.clickListItem}/>
+												clickListItem= {this.props.clickListItem}/>
 								 ))}
 
 

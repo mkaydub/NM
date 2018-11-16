@@ -121,7 +121,8 @@ class App extends Component {
 				res.response.venue ) );
 			this.setState( {
 				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
-				activeMarker: clickedVenue
+				activeMarker: clickedVenue,
+				showingInfoWindow: true
 			} )
 		} )
 	}
