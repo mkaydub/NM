@@ -21,17 +21,16 @@ class NoMap extends Component {
 
 	render = () => {
 		return (
-			<div>
+			<div className='errorScreen'>
                 {this.state.show
                     ? (
-                        <div>
+                        <div className='errorScreen'>
                             <h1>Error loading map</h1>
-                            <p>
-                                Could not load map control due to a network error.Try again when you're online.</p>
+                            <p className='error'>
+                                Oh No! Could not load map due to a network error.Try again when you're online.</p>
                         </div>
-                    )
-                    : (<div><h1>Loading</h1></div>)
-            } </div>
+		): ( <div><h1>Loading</h1></div> )
+	} </div>
 		)
 	}
 }
