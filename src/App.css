@@ -148,3 +148,13 @@ input {
 .MuiBackdrop-root-15 {
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.error {
+  color: #fff;
+}
+
+.errorScreen {
+  background-color: #313440;
+  width: 100%;
+  height: 100%;
+}
