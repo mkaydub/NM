@@ -9,18 +9,9 @@ const API_Key = 'AIzaSyDiWwXhqwiyeCoyClgDNrNbFmDNq5QwCrk'
 export class MapContainer extends Component {
 	state = {};
 
-	realMarkers = [];
-	setRealMarker = marker => {
-		this.realMarkers.push( marker.marker );
-		console.log( "realMarkers: ", this.realMarkers );
-	}
-
 	componentDidMount = () => {}
 
 	render() {
-		if ( this.props.venues.length !== this.realMarkers.length )
-			this.realMarkers = [];
-		const targetMarker = this.realMarkers[ this.props.selectedIndex ];
 
 		if ( !this.props.loaded ) {
 			return <div>Loading...</div>
@@ -44,7 +35,7 @@ export class MapContainer extends Component {
 
 								{this.props.venues && this.props.venues.map( (venue,index) =>  (
 									<Marker
-												ref = {this.setRealMarker}
+												ref= {this.props.clickedVenue}
 												icon={{ url: '/markericon.png' }}
 											  position = {{lat:venue.location.lat, lng:venue.location.lng}}
                         key = {index}
@@ -57,7 +48,7 @@ export class MapContainer extends Component {
 
 
 								<InfoWindow
-									ref = {this.setRealMarker}
+											onListClick= {this.props.clickListItem}
 											marker={this.props.activeMarker}
 											filtered = {this.props.filtered}
 											onOpen={this.props.windowHasOpened}

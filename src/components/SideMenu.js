@@ -4,7 +4,14 @@ import Drawer from '@material-ui/core/Drawer';
 class SideMenu extends Component {
 	state = {
 		open: true,
-		query: ''
+		query: '',
+		showingInfoWindow: false
+	}
+
+	componentDidMount() {
+		this.setState( {
+			showingInfoWindow: false
+		} )
 	}
 
 	updateQuery = ( newQuery ) => {
@@ -41,10 +48,12 @@ class SideMenu extends Component {
                                         <li
                                         key={index}>
                                             <button
-                                              venue= {venue}
+                                              activeMarker= {this.props.clickedVenue}
                                               onClick={() => this.props.clickListItem(index)}
                                               className = 'venueList'
-                                              key={index}>{venue.name}</button>
+                                              key={index}
+                                              >{venue.name}
+                                              </button>
                                         </li>
                                     )
                                 })}

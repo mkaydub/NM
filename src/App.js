@@ -21,7 +21,8 @@ class App extends Component {
 		all: this.venues,
 		filtered: [],
 		query: '',
-		selectedIndex: []
+		selectedIndex: null,
+		clickedVenue: {},
 	}
 
 	onMarkerClick = ( props, marker, e ) => {
@@ -40,8 +41,6 @@ class App extends Component {
 				center: res.response.venue.location
 			} )
 		} )
-
-
 	}
 
 	onMapClick = ( props ) => {
@@ -61,7 +60,7 @@ class App extends Component {
 			limit: 20,
 			query: 'sushi'
 		} ).then( results => {
-			const { venues, filtered } = results.response;
+			const { venues } = results.response;
 			const { center } = results.response.geocode.feature.geometry;
 			const markers = venues.map( venue => {
 				return {
@@ -71,16 +70,16 @@ class App extends Component {
 					isVisible: true,
 					name: venue.name,
 					id: venue.id,
-					rating: venue.rating,
+					rating: venue.rating
 				};
 			} );
 			this.setState( {
 				venues,
 				center,
-				markers,
-				filtered
+				markers
 			} );
 		} );
+
 	}
 
 	toggleDrawer = () => {
@@ -108,18 +107,24 @@ class App extends Component {
 
 	}
 
-	clickListItem = ( index, props ) => {
+	clickListItem = ( index ) => {
 		// Set the state to reflect the selected location array index
 		this.setState( {
-			activeMarker: this.state.markers[ index ],
 			open: !this.state.open,
-			selectedIndex: index
+			selectedIndex: index,
+			animation: 1
 		} )
-		console.log(
-			'filtered after click list', this.state.activeMarker, this.state.showingInfoWindow
-		)
-	}
 
+		const clickedVenue = this.state.venues[ index ];
+		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
+			console.log( 'after fs update to venues:', Object.assign( clickedVenue,
+				res.response.venue ) );
+			this.setState( {
+				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
+				activeMarker: clickedVenue
+			} )
+		} )
+	}
 
 	render() {
 		return (
@@ -139,9 +144,13 @@ class App extends Component {
 					onClose = {this.closeWindow}
 					selectedIndex={this.state.selectedIndex}
 					onListClick = {this.clickListItem}
+					clickedVenue= {this.state.clickedVenue}
+
 					/>
 				<SideMenu
 					{...this.state}
+					clickedVenue= {this.state.clickedVenue}
+					showingInfoWindow= {!this.state.showingInfoWindow}
 					filtered={this.state.filtered}
           open={this.state.open}
           toggleDrawer={this.toggleDrawer}
