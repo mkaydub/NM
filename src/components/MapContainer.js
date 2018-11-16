@@ -45,14 +45,15 @@ export class MapContainer extends Component {
 												name = {venue.name}
 												id = {venue.id}
                         onClick={ this.props.onMarkerClick }
-												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : null}
+												animation ={this.props.activeMarker ? (this.props.activeMarker.id === venue.id ? '1' : '0') : '0'}
 												clickListItem= {this.props.clickListItem}/>
 								 ))}
 
 
 								<InfoWindow
+											activeMarker= {this.props.activeMarker}
 											onListClick= {this.props.clickListItem}
-											marker={this.props.activeMarker}
+											position = {this.props.center}
 											filtered = {this.props.filtered}
 											onOpen={this.props.windowHasOpened}
 											onClose={this.props.closeWindow}

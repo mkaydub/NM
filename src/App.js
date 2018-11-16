@@ -48,6 +48,7 @@ class App extends Component {
 			this.setState( {
 				showingInfoWindow: false,
 				activeMarker: {},
+				clickedVenue: {},
 				animation: null,
 				open: false
 			} )
@@ -119,7 +120,10 @@ class App extends Component {
 			console.log( 'after fs update to venues:', Object.assign( clickedVenue,
 				res.response.venue ) );
 			this.setState( {
+				center: res.response.venue.location,
 				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
+				showingInfoWindow: true,
+				venue: res.response.venue,
 				activeMarker: clickedVenue
 			} )
 		} )
