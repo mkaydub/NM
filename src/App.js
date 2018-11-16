@@ -34,8 +34,8 @@ class App extends Component {
 		} );
 		const venue = this.state.venues.filter( venue => venue.id === marker.id );
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
-			console.log( 'after fs update to venues:', Object.assign( venue,
-				res.response.venue ) );
+			//		console.log( 'after fs update to venues:', Object.assign( venue,
+			//			res.response.venue ) );
 			this.setState( {
 				venue: Object.assign( venue, res.response.venue ),
 				center: res.response.venue.location
@@ -96,8 +96,8 @@ class App extends Component {
 			selectedPlace: null,
 			filtered: this.filterVenue( this.state.venues, query )
 		} );
-		console.log( 'app level update',
-			this.state.filtered )
+		//	console.log( 'app level update',
+		//		this.state.filtered )
 	}
 
 	filterVenue = ( venues, query ) => {
@@ -117,8 +117,8 @@ class App extends Component {
 
 		const clickedVenue = this.state.venues[ index ];
 		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
-			console.log( 'after fs update to venues:', Object.assign( clickedVenue,
-				res.response.venue ) );
+			//		console.log( 'after fs update to venues:', Object.assign( clickedVenue,
+			//			res.response.venue ) );
 			this.setState( {
 				center: res.response.venue.location,
 				clickedVenue: Object.assign( clickedVenue, res.response.venue ),

@@ -19,7 +19,7 @@ class SideMenu extends Component {
 		// up the call tree
 		this.setState( { query: newQuery } );
 		this.props.filterVenues( newQuery );
-		console.log( 'side menu', this.props.filtered )
+		//	console.log( 'side menu', this.props.filtered )
 	}
 
 	render() {
