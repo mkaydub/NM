@@ -115,7 +115,7 @@ class App extends Component {
 			animation: 1
 		} )
 
-		const clickedVenue = this.state.venues[ index ];
+		const clickedVenue = this.state.filtered[ index ];
 		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
 			//		console.log( 'after fs update to venues:', Object.assign( clickedVenue,
 			//			res.response.venue ) );
