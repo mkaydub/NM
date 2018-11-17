@@ -85,7 +85,8 @@ class App extends Component {
 			this.setState( {
 				venues,
 				center,
-				markers
+				markers,
+				filtered: this.filterVenue( venues, "" )
 			} );
 		} );
 	}
