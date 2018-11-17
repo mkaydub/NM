@@ -55,6 +55,14 @@ class App extends Component {
 		}
 	};
 
+
+	saveRealMarker = marker => {
+		if ( marker && this.realMarkers.indexOf( marker ) === -1 ) {
+			this.realMarkers.push( marker );
+		}
+	}
+
+
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
