@@ -125,35 +125,36 @@ class App extends Component {
 		return (
 			<div className='App'>
 				<CssBaseline />
-        <div className='header'>
+				<div className='header'>
 					<button className='hamburger' onClick={this.toggleDrawer}>
-		 <i className='fas fa-bars '></i>
-	 </button>
+						<i className='fas fa-bars '></i>
+					</button>
 					<h1>Denver, Colorado - Sushi Scene</h1>
 					<p className='powered'>Powered By Google Maps & FourSquare</p>
-        <MapContainer
-          {...this.state}
-					filtered={this.state.filtered}
-					onMarkerClick= {this.onMarkerClick}
-					onMapClick = {this.onMapClick}
-					onClose = {this.closeWindow}
-					selectedIndex={this.state.selectedIndex}
-					onListClick = {this.clickListItem}
-					clickedVenue= {this.state.clickedVenue}
+					<MapContainer
+						{...this.state}
+						filtered={this.state.filtered}
+						onMarkerClick={this.onMarkerClick}
+						onMapClick={this.onMapClick}
+						onClose={this.closeWindow}
+						selectedIndex={this.state.selectedIndex}
+						onListClick={this.clickListItem}
+						clickedVenue={this.state.clickedVenue}
+						saveRealMarker={this.saveRealMarker}
 
 					/>
-				<SideMenu
-					{...this.state}
-					clickedVenue= {this.state.clickedVenue}
-					showingInfoWindow= {!this.state.showingInfoWindow}
-					filtered={this.state.filtered}
-          open={this.state.open}
-          toggleDrawer={this.toggleDrawer}
-					filterVenues= {this.updateQuery}
-					clickListItem = {this.clickListItem}
+					<SideMenu
+						{...this.state}
+						clickedVenue={this.state.clickedVenue}
+						showingInfoWindow={!this.state.showingInfoWindow}
+						filtered={this.state.filtered}
+						open={this.state.open}
+						toggleDrawer={this.toggleDrawer}
+						filterVenues={this.updateQuery}
+						clickListItem={this.clickListItem}
 					/>
-        </div>
-      </div>
+				</div>
+			</div>
 		);
 	}
 }
