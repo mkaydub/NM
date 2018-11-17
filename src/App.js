@@ -28,7 +28,7 @@ class App extends Component {
 	realMarkers = [];
 
 	onMarkerClick = ( props, marker, e ) => {
-		console.log( "I will be the active marker: ", marker );
+		//	console.log( "I will be the active marker: ", marker );
 		const venue = this.state.venues.filter( venue => venue.id === marker.id );
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			//		console.log( 'after fs update to venues:', Object.assign( venue,
@@ -117,7 +117,7 @@ class App extends Component {
 
 	clickListItem = ( index ) => {
 		let marker = this.realMarkers[ index ];
-		console.log( "the REAL marker: ", marker );
+		//	console.log( "the REAL marker: ", marker );
 		this.onMarkerClick( marker.props, marker.marker, null );
 
 		this.setState( {

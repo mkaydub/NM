@@ -28,7 +28,7 @@ export class MapContainer extends Component {
 		}
 
 
-		console.log( "I AM the activeMarker: ", this.props.activeMarker );
+		//	console.log( "I AM the activeMarker: ", this.props.activeMarker );
 
 		return (
 			<Map
