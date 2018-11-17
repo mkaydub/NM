@@ -116,25 +116,9 @@ class App extends Component {
 	}
 
 	clickListItem = ( index ) => {
-		// Set the state to reflect the selected location array index
-		this.setState( {
-			open: !this.state.open,
-			selectedIndex: index,
-			animation: 1
-		} )
-
-		const clickedVenue = this.state.venues[ index ];
-		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
-			//		console.log( 'after fs update to venues:', Object.assign( clickedVenue,
-			//			res.response.venue ) );
-			this.setState( {
-				center: res.response.venue.location,
-				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
-				showingInfoWindow: true,
-				venue: res.response.venue,
-				activeMarker: clickedVenue
-			} )
-		} )
+		let marker = this.realMarkers[ index ];
+		console.log( "the REAL marker: ", marker );
+		this.onMarkerClick( marker.props, marker.marker, null );
 	}
 
 	render() {
