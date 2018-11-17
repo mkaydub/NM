@@ -12,6 +12,8 @@ export class MapContainer extends Component {
 		filtered: {}
 	};
 
+	realMarkers = [];
+
 	componentDidMount = () => {}
 
 	render() {
