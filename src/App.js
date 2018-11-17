@@ -28,19 +28,17 @@ class App extends Component {
 	realMarkers = [];
 
 	onMarkerClick = ( props, marker, e ) => {
-		this.setState( {
-			selectedPlace: props,
-			activeMarker: marker,
-			showingInfoWindow: true,
-			animation: 1
-		} );
+		console.log( "I will be the active marker: ", marker );
 		const venue = this.state.venues.filter( venue => venue.id === marker.id );
 		SquareAPI.getVenueDetails( marker.id ).then( res => {
 			//		console.log( 'after fs update to venues:', Object.assign( venue,
 			//			res.response.venue ) );
 			this.setState( {
-				venue: Object.assign( venue, res.response.venue ),
-				center: res.response.venue.location
+				selectedPlace: props,
+				activeMarker: marker,
+				showingInfoWindow: true,
+				animation: 1,
+				venue: Object.assign( venue, res.response.venue )
 			} )
 		} )
 	}
