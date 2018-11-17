@@ -119,10 +119,55 @@ class App extends Component {
 		let marker = this.realMarkers[ index ];
 		console.log( "the REAL marker: ", marker );
 		this.onMarkerClick( marker.props, marker.marker, null );
+<<<<<<< HEAD
 
 		this.setState( {
 			open: !this.state.open
 		} )
+||||||| merged common ancestors
+||||||| merged common ancestors
+		// Set the state to reflect the selected location array index
+		this.setState( {
+			open: !this.state.open,
+			selectedIndex: index,
+			animation: 1
+		} )
+
+		const clickedVenue = this.state.venues[ index ];
+		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
+			//		console.log( 'after fs update to venues:', Object.assign( clickedVenue,
+			//			res.response.venue ) );
+			this.setState( {
+				center: res.response.venue.location,
+				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
+				showingInfoWindow: true,
+				venue: res.response.venue,
+				activeMarker: clickedVenue
+			} )
+		} )
+=======
+		// Set the state to reflect the selected location array index
+		this.setState( {
+			open: !this.state.open,
+			selectedIndex: index,
+			animation: 1
+		} )
+
+		const clickedVenue = this.state.filtered[ index ];
+		SquareAPI.getVenueDetails( clickedVenue.id ).then( res => {
+			//		console.log( 'after fs update to venues:', Object.assign( clickedVenue,
+			//			res.response.venue ) );
+			this.setState( {
+				center: res.response.venue.location,
+				clickedVenue: Object.assign( clickedVenue, res.response.venue ),
+				showingInfoWindow: true,
+				venue: res.response.venue,
+				activeMarker: clickedVenue
+			} )
+		} )
+>>>>>>> 437ec6fd4ca13ed779998fa0cd1da5d89c10b64b
+=======
+>>>>>>> 00ca885d3678c48fe4d084c1d3306ccdfc59ffb9
 	}
 
 	render() {
