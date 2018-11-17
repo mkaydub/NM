@@ -16,7 +16,6 @@ class SideMenu extends Component {
 
 	updateQuery = ( newQuery ) => {
 		// Save the new query string in state and pass the string
-		// up the call tree
 		this.setState( { query: newQuery } );
 		this.props.filterVenues( newQuery );
 		//	console.log( 'side menu', this.props.filtered )
@@ -40,6 +39,7 @@ class SideMenu extends Component {
               value={this.state.query} />
          </div>
           <ul>
+						{/*only show filtered items in list drawer*/}
            {this.props.filtered && this
                                 .props
                                 .filtered
