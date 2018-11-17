@@ -66,7 +66,7 @@ class App extends Component {
 	componentDidMount() {
 		SquareAPI.search( {
 			near: 'Denver, CO',
-			limit: 30,
+			limit: 40,
 			query: 'sushi'
 		} ).then( results => {
 			const { venues } = results.response;
@@ -119,6 +119,10 @@ class App extends Component {
 		let marker = this.realMarkers[ index ];
 		console.log( "the REAL marker: ", marker );
 		this.onMarkerClick( marker.props, marker.marker, null );
+
+		this.setState( {
+			open: !this.state.open
+		} )
 	}
 
 	render() {
