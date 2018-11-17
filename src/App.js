@@ -110,7 +110,7 @@ class App extends Component {
 
 	filterVenue = ( venues, query ) => {
 		// Filter locations to match query string
-		return this.state.venues.filter( venue => venue.name.toLowerCase()
+		return venues.filter( venue => venue.name.toLowerCase()
 			.includes( query.toLowerCase() ) );
 
 	}
