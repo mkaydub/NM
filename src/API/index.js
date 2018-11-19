@@ -49,3 +49,5 @@ export default class SquareAPI {
 		return Helper.simpleFetch( `/venues/${VENUE_ID}/photos`, 'GET' );
 	}
 }
+
+//[Forrest Walker Walkthrough - FourSquare API](https://www.youtube.com/watch?v=Dj5hzKBxCBI&list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP&index=3)
