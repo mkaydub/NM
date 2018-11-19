@@ -11,7 +11,7 @@ This will allow you to run the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Or
-You can click [here](http://mkaydubnm.surge.sh) to use the app!
+### You can click [here](http://mkaydubnm.surge.sh) to use the app!
 
 ## How it works:
 This app pulls data from FourSquare for 20 places (This limit can be changed in App.js line 69) in the Denver Area (line 68 App.js) for places with the query 'sushi' (line 70 App.js) and places markers on the map. When clicking a marker on the map the user can see what information is available from FourSquare for the place associated with that marker. Additionally, the places can be filtered in the side SideMenu that can be toggled on click and on click of a venue, the information for said venue will appear in the info window just as it does when a marker is clicked.
